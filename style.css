@@ -21,8 +21,9 @@ body, .btn-container button {
 
 .btn-container {
     display: grid;
+    width: 20rem;
     grid-template-rows: repeat(5, 1fr);
-    grid-template-columns: repeat(auto, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     border: 1px solid rgba(142, 173, 207, 0.1);
 }
 
@@ -46,4 +47,16 @@ body, .btn-container button {
     grid-column: span 4;
     border: 1px solid rgb(47, 84, 122);
     grid-row: span 2;
+    width: 100% !important;
+}
+
+.current-input {
+    font-size: 3rem !important;
+    line-height: 3rem;
+    width: 100%;
+}
+
+.previous-input {
+    font-size: 1rem !important;
+    line-height: 0;
 }

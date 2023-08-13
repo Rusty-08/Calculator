@@ -12,26 +12,29 @@
 </head>
 <body>
     <div class="btn-container shadow-sm gap-2 p-3 bg-light rounded-2">
-        <div class="display-input rounded-2 shadow-sm"></div>
-        <button class="btn shadow-sm"><i class="fa-solid fa-percent"></i></button>
-        <button class="btn shadow-sm"><i class="fa-solid fa-c"></i></button>
-        <button class="btn shadow-sm"><i class="fa-solid fa-divide"></i></button>
-        <button class="btn shadow-sm"><i class="fa-solid fa-delete-left"></i></button>
-        <button class="btn shadow-sm">7</button>
-        <button class="btn shadow-sm">8</button>
-        <button class="btn shadow-sm">9</button>
-        <button class="btn shadow-sm"><i class="fa-solid fa-xmark"></i></button>
-        <button class="btn shadow-sm">4</button>
-        <button class="btn shadow-sm">5</button>
-        <button class="btn shadow-sm">6</button>
-        <button class="btn shadow-sm"><i class="fa-solid fa-minus"></i></button>
-        <button class="btn shadow-sm">1</button>
-        <button class="btn shadow-sm">2</button>
-        <button class="btn shadow-sm">3</button>
-        <button class="btn shadow-sm"><i class="fa-solid fa-plus"></i></button>
-        <button class="btn shadow-sm zero">0</button>
-        <button class="btn shadow-sm">.</button>
-        <button class="btn shadow-sm"><i class="fa-solid fa-equals"></i></button>
+        <div class="display-input rounded-2 shadow-sm p-3">
+            <div class="previous-input w-100 h-25 d-flex justify-content-end align-items-end fw-normal opacity-75"></div>
+            <div class="current-input w-100 h-75 d-flex justify-content-end align-items-end fw-semibold"></div>
+        </div>
+        <button class="btn operator shadow-sm" data-operator="%"><i class="fa-solid fa-percent"></i></button>
+        <button class="btn reset shadow-sm"><i class="fa-solid fa-c"></i></button>
+        <button class="btn operator shadow-sm" data-operator="÷"><i class="fa-solid fa-divide"></i></button>
+        <button class="btn erase shadow-sm"><i class="fa-solid fa-delete-left"></i></button>
+        <button class="btn btn-num shadow-sm" data-number="7">7</button>
+        <button class="btn btn-num shadow-sm" data-number="8">8</button>
+        <button class="btn btn-num shadow-sm" data-number="9">9</button>
+        <button class="btn operator shadow-sm" data-operator="x"><i class="fa-solid fa-xmark"></i></button>
+        <button class="btn btn-num shadow-sm" data-number="4">4</button>
+        <button class="btn btn-num shadow-sm" data-number="5">5</button>
+        <button class="btn btn-num shadow-sm" data-number="6">6</button>
+        <button class="btn operator shadow-sm" data-operator="-"><i class="fa-solid fa-minus"></i></button>
+        <button class="btn btn-num shadow-sm" data-number="1">1</button>
+        <button class="btn btn-num shadow-sm" data-number="2">2</button>
+        <button class="btn btn-num shadow-sm" data-number="3">3</button>
+        <button class="btn operator shadow-sm" data-operator="+"><i class="fa-solid fa-plus"></i></button>
+        <button class="btn btn-num shadow-sm zero" data-number="0">0</button>
+        <button class="btn btn-num shadow-sm" data-number=".">.</button>
+        <button class="btn equal shadow-sm"><i class="fa-solid fa-equals"></i></button>
     </div>
 </body>
 </html>
