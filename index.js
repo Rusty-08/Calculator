@@ -15,6 +15,7 @@ let current = currentInput.textContent
 let previous = previousInput.textContent
 
 reset.onclick = () => resetInput()
+erase.onclick = () => eraseInput()
 equal.onclick = () => equalBtn(previous, current)
 
 // Function Constructor to calculate the inputs
@@ -36,7 +37,7 @@ function Calculator() {
             b = +split[2];
 
         if (!this.methods[op] || isNaN(a) || isNaN(b)) {
-            return NaN;
+            return '';
         }
         return this.methods[op](a, b);
     };
@@ -47,31 +48,31 @@ let calc = new Calculator;
 // call Calculator function constructor to calculate the inputs
 const equalBtn = (a, b) => {
     let result = calc.calculate(`${a} ${b}`);
-    resetInput()
-    currentInput.textContent = result
+
+    if (!previousInput.textContent) {
+        return '';
+    } else {
+        previousInput.textContent = `${a} ${b} =`
+        previous = previousInput.textContent
+        current = result
+        currentInput.textContent = current
+    }
 }
 
 const eraseInput = () => {
-
+    if (current != 0) {
+        current = current.slice(0, -1)
+        currentInput.textContent = current
+    }
 }
 
 // display number input : onclicked
 nums.forEach((num) => {
     num.addEventListener('click', (e) => {
         e.preventDefault();
-
         let value = num.getAttribute('data-number')
         current += value
-
-        if (!previous.includes(' ')) {
-            currentInput.textContent = current
-        } else {
-            currentInput.textContent = ''
-            current = ''
-            current += value
-            let newCurrent = current
-            currentInput.textContent = newCurrent
-        }
+        currentInput.textContent = current
     })
 })
 
@@ -87,12 +88,13 @@ const resetInput = () => {
 operator.forEach((op) => {
     op.addEventListener('click', (e) => {
         e.preventDefault()
-        e = op.getAttribute('data-operator')
+        let arOperator = op.getAttribute('data-operator')
 
-        if (!current.includes(' '))
-            previous = current + ' ' + e
-
-        previousInput.textContent = previous
+        if (!previous.includes(arOperator) || !previous.includes('=')) {
+            previous = current + ' ' + arOperator
+            previousInput.textContent = previous
+        }
+        if (previous.includes('=') || previous.includes(arOperator)) current = ''
     })
 })
 
