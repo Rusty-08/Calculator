@@ -32,9 +32,9 @@ function Calculator() {
     this.calculate = function (str) {
 
         let split = str.split(' '),
-            a = +split[0],
+            a = +split[0].split(',').join(''),
             op = split[1],
-            b = +split[2];
+            b = +split[2].split(',').join('');
 
         if (!this.methods[op] || isNaN(a) || isNaN(b)) {
             return '';
@@ -54,7 +54,7 @@ const equalBtn = (a, b) => {
     } else {
         previousInput.textContent = `${a} ${b} =`
         previous = previousInput.textContent
-        current = result
+        current = result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
         currentInput.textContent = current
     }
 }
@@ -62,8 +62,10 @@ const equalBtn = (a, b) => {
 const eraseInput = () => {
     if (current != 0) {
         current = current.slice(0, -1)
-        currentInput.textContent = current
+        if (current.length == 4) current = current.toString().split(',').join('')
+        currentInput.textContent = current.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     }
+    if (previous || previous.includes('=')) previousInput.textContent = ''
 }
 
 // display number input : onclicked
@@ -71,8 +73,14 @@ nums.forEach((num) => {
     num.addEventListener('click', (e) => {
         e.preventDefault();
         let value = num.getAttribute('data-number')
+
+        if (currentInput.textContent.length >= 13) value = ''
         current += value
-        currentInput.textContent = current
+
+        currentInput.textContent = current.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+
+        if (currentInput.textContent.length > 10)
+            currentInput.style.fontSize = '2.3rem'
     })
 })
 
@@ -90,11 +98,11 @@ operator.forEach((op) => {
         e.preventDefault()
         let arOperator = op.getAttribute('data-operator')
 
-        if (!previous.includes(arOperator) || !previous.includes('=')) {
-            previous = current + ' ' + arOperator
+        if (current != 0 || previous.includes(' ')) {
+            current = ''
+            previous = currentInput.textContent + ' ' + arOperator
             previousInput.textContent = previous
         }
-        if (previous.includes('=') || previous.includes(arOperator)) current = ''
     })
 })
 
