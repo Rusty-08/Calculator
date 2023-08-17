@@ -1,8 +1,3 @@
-// problem to solve: 
-// only single number is print to current after the operation is clicked
-// no erase function yet
-// '.' must be print once
-
 const nums = document.querySelectorAll('.btn-num')
 const operator = document.querySelectorAll('.operator')
 const currentInput = document.querySelector('.current-input')
@@ -49,13 +44,13 @@ let calc = new Calculator;
 const equalBtn = (a, b) => {
     let result = calc.calculate(`${a} ${b}`);
 
-    if (!previousInput.textContent) {
-        return '';
+    if (!previousInput.textContent || b == '' || previous.includes('=')) {
+        previousInput.textContent = ''
     } else {
-        previousInput.textContent = `${a} ${b} =`
+        previousInput.textContent = `${a} ${b.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} =`
         previous = previousInput.textContent
-        current = result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-        currentInput.textContent = current
+        currentInput.textContent = result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+        current = ''
     }
 }
 
@@ -66,6 +61,7 @@ const eraseInput = () => {
         currentInput.textContent = current.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     }
     if (previous || previous.includes('=')) previousInput.textContent = ''
+    if (currentInput.textContent == '') currentInput.textContent = 0
 }
 
 // display number input : onclicked
@@ -74,12 +70,14 @@ nums.forEach((num) => {
         e.preventDefault();
         let value = num.getAttribute('data-number')
 
-        if (currentInput.textContent.length >= 13) value = ''
+        if (currentInput.offsetWidth > 255) value = ''
+        if (current.includes('.') && value == '.') value = ''
+
         current += value
 
         currentInput.textContent = current.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 
-        if (currentInput.textContent.length > 10)
+        if (currentInput.offsetWidth > 255)
             currentInput.style.fontSize = '2.3rem'
     })
 })
@@ -90,6 +88,7 @@ const resetInput = () => {
     previous = ''
     currentInput.textContent = 0
     previousInput.textContent = ''
+    currentInput.style.fontSize = '2.9rem'
 }
 
 // display operator on previous input : onclicked

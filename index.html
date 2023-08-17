@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="index.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.min.js" integrity="sha512-3dZ9wIrMMij8rOH7X3kLfXAzwtcHpuYpEgQg1OA4QAob1e81H8ntUQmQm3pBudqIoySO5j0tHN4ENzA6+n2r4w==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.min.js" integrity="sha512-3dZ9wIrMMij8rOH7X3kLfXAzwtcHpuYpEgQg1OA4QAob1e81H8ntUQmQm3pBudqIoySO5j0tHN4ENzA6+n2r4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/css/bootstrap.min.css" integrity="sha512-Z/def5z5u2aR89OuzYcxmDJ0Bnd5V1cKqBEbvLOiUNWdg9PQeXVvXLI90SE4QOHGlfLqUnDNVAYyZi8UwUTmWQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Calculator</title>
 </head>
 <body>
     <div class="btn-container shadow-sm gap-2 p-3 bg-light rounded-2">
-        <div class="display-input rounded-2 shadow-sm p-3">
-            <div class="previous-input w-100 h-25 d-flex justify-content-end align-items-end fw-normal opacity-75"></div>
-            <div class="current-input w-100 h-75 d-flex justify-content-end align-items-end fw-semibold"></div>
+        <div class="display-input rounded-2 shadow-sm p-3 position-relative d-flex align-items-end justify-content-end">
+            <div class="previous-input w-auto h-25 d-flex justify-content-end align-items-end fw-normal opacity-75 position-absolute"></div>
+            <div class="current-input w-auto h-50 mt-4 d-flex justify-content-end align-items-end fw-semibold position-absolute"></div>
         </div>
         <button class="btn operator shadow-sm" data-operator="%"><i class="fa-solid fa-percent"></i></button>
         <button class="btn reset shadow-sm"><i class="fa-solid fa-c"></i></button>
